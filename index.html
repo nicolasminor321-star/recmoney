@@ -230,13 +230,13 @@ main{min-width:0;display:flex;flex-direction:column}
 .pro-banner .btn{background:#fff;color:#4B1DB8;font-size:15px;font-weight:800;padding:15px 22px;border-radius:14px;white-space:nowrap;box-shadow:0 10px 24px -12px rgba(30,0,80,.6)}
 .pro-banner .btn svg{width:18px;height:18px}
 .pro-banner[hidden]{display:none}
-.plan{border-radius:20px;padding:18px;border:2px solid transparent;background:linear-gradient(var(--surface),var(--surface)) padding-box,var(--pro) border-box;display:flex;flex-direction:column;gap:14px}
-.plan .ptop{display:flex;flex-direction:column;gap:6px}
-.plan .price{white-space:nowrap;font-family:var(--display);font-size:36px;font-weight:800;letter-spacing:-.03em;line-height:1;color:var(--ink)}
-.plan .price small{font-family:var(--body);font-size:15px;font-weight:600;color:var(--muted);letter-spacing:0}
+.plan{min-width:0;max-width:100%;box-sizing:border-box;border-radius:20px;padding:18px;border:2px solid transparent;background:linear-gradient(var(--surface),var(--surface)) padding-box,var(--pro) border-box;display:flex;flex-direction:column;gap:14px}
+.plan .ptop{display:flex;flex-direction:column;gap:6px;min-width:0}
+.plan .price{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;min-width:0;max-width:100%;white-space:nowrap;font-family:var(--display);font-size:clamp(28px,9vw,40px);font-weight:800;letter-spacing:-.03em;line-height:1;color:var(--ink)}
+.plan .price small{white-space:nowrap;font-family:var(--body);font-size:15px;font-weight:600;color:var(--muted);letter-spacing:0}
 .plan .pname{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;background:var(--pro);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:6px;display:block}
 .plan .cancel{font-size:13px;color:var(--muted)}
-.plan .price .cur{font-size:20px;margin-right:4px;vertical-align:.45em}
+.plan .price .cur{font-size:20px;margin-right:-4px;position:relative;top:-.45em}
 .plan ul{margin:0;padding:14px 0 0;border-top:1px solid var(--line);list-style:none;display:flex;flex-direction:column;gap:10px;font-size:14px}
 .plan li{display:flex;gap:10px;align-items:center}
 .plan li svg{width:20px;height:20px;flex:none;color:#fff;background:var(--pro);border-radius:50%;padding:4px}
