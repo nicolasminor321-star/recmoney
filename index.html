@@ -854,14 +854,14 @@ body.locked .nudge{display:none}
     .mtools .sortrow{display:grid;grid-template-columns:minmax(0,1fr);gap:6px}
     .mtools .sort{width:100%;min-width:0;justify-content:space-between}
     .mtools .sort select{width:auto;max-width:calc(100% - 64px)}
-    .top{gap:6px;padding-inline:8px}
-    .m-logo{flex:none;min-width:0}
-    .m-logo b{display:none}
-    .m-logo .logo-mark{flex:none}
-    .m-lvl{width:28px!important;height:28px!important;font-size:13px}
-    .pill.cash{gap:4px;padding:5px 6px!important;font-size:12px}
-    .pill.cash svg{width:14px;height:14px}
-    .icon-btn#b-theme{width:30px;height:30px;flex:none}
+    .top{gap:4px!important;padding-inline:8px!important;flex-wrap:nowrap}
+    .m-logo{display:flex;flex:none;min-width:max-content;gap:4px;padding:0;white-space:nowrap}
+    .m-logo b{display:block;flex:none;white-space:nowrap;font-size:clamp(15px,4.6vw,20px);letter-spacing:-.03em}
+    .m-logo .logo-mark{width:24px;height:24px;flex:none;border-radius:8px}
+    .m-lvl{width:24px!important;height:24px!important;flex:none;font-size:12px}
+    .pill.cash{flex:none;gap:3px;padding:4px 5px!important;font-size:clamp(10px,3.7vw,12px)}
+    .pill.cash svg{width:13px;height:13px;flex:none}
+    .icon-btn#b-theme{width:26px;height:26px;flex:none}
     .view{padding-inline:12px}
     .pro-banner{padding:16px 12px}
     .pb-stats div{padding-inline:3px}
