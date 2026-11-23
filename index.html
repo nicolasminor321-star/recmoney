@@ -816,9 +816,52 @@ body.locked .nudge{display:none}
 .mtop.ph{background-size:cover!important;background-position:center!important;position:relative}
 .mtop.ph::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.35))}
 .mtop.ph .ico{display:none}
-.mtop.ph .pay,.mtop.ph .hot{position:relative;z-index:1}
+  .mtop.ph .pay,.mtop.ph .hot{position:relative;z-index:1}
 
-</style>
+  /* Ajustes de largura para telas compactas */
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{max-width:100%;overflow-x:hidden}
+  .app,main,.view,.hero,.hero-l,.daily,.mtools,.grid,.mcard,.mbody,.pro-banner,.pb-head,.pb-stats,.auth,.a-grid,.a-hero,.a-more,.a-sec{min-width:0;max-width:100%}
+  .a-hero>*{min-width:0;max-width:100%}
+  @media (max-width:820px){
+    .a-hero{grid-template-columns:minmax(0,1fr)}
+    .a-phone{max-width:100%}
+    .a-earn{left:0}
+    .vh .filters,#filters{width:100%;max-width:100%;min-width:0;margin:0;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}
+    .filters button{flex:none}
+    .sortrow,.sort{min-width:0;max-width:100%}
+    .sortrow{flex-wrap:wrap}
+    .sort select{min-width:0;max-width:100%}
+    .pro-banner{width:100%;min-width:0;grid-template-columns:minmax(0,1fr)}
+    .pro-banner .pb-title{font-size:clamp(18px,6vw,23px)}
+    .pb-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%;min-width:0}
+    .pb-stats div{min-width:0;padding:0 6px}
+    .pb-stats b{font-size:clamp(11px,4.2vw,16px);white-space:nowrap;letter-spacing:-.045em}
+  }
+  @media (max-width:480px){
+    .a-hero h1{font-size:clamp(32px,11vw,40px)}
+    .a-cta .btn{min-width:0;padding-inline:10px;font-size:clamp(13px,4.5vw,15px)}
+  }
+  @media (max-width:360px){
+    .vagas .t{flex-wrap:wrap}
+    .vagas .t span{white-space:normal}
+    .mtools .sortrow{display:grid;grid-template-columns:minmax(0,1fr);gap:6px}
+    .mtools .sort{width:100%;min-width:0;justify-content:space-between}
+    .mtools .sort select{width:auto;max-width:calc(100% - 64px)}
+    .top{gap:6px;padding-inline:8px}
+    .m-logo{flex:none;min-width:0}
+    .m-logo b{display:none}
+    .m-logo .logo-mark{flex:none}
+    .m-lvl{width:28px!important;height:28px!important;font-size:13px}
+    .pill.cash{gap:4px;padding:5px 6px!important;font-size:12px}
+    .pill.cash svg{width:14px;height:14px}
+    .icon-btn#b-theme{width:30px;height:30px;flex:none}
+    .view{padding-inline:12px}
+    .pro-banner{padding:16px 12px}
+    .pb-stats div{padding-inline:3px}
+    .pb-stats span{font-size:10px}
+  }
+  </style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
