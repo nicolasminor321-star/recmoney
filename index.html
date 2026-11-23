@@ -161,8 +161,9 @@ main{min-width:0;display:flex;flex-direction:column}
 .daily.has-photo canvas{visibility:hidden}
 .daily.has-photo .shade{background:linear-gradient(180deg,rgba(0,0,0,.4),rgba(0,0,0,.15) 30%,rgba(0,0,0,.55) 55%,rgba(0,0,0,.9))}
 .daily .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 30%,rgba(0,0,0,.82))}
-.daily .hudtop{position:absolute;top:18px;left:20px;right:20px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px}
-.daily .hudtop .r{display:flex;gap:8px;align-items:center;background:rgba(0,0,0,.45);padding:5px 10px;border-radius:99px}
+.daily .hudtop{position:absolute;top:18px;left:20px;right:20px;display:flex;justify-content:space-between;align-items:center;gap:8px;font-family:var(--mono);font-size:12px}
+.daily .hudtop .r{display:flex;gap:8px;align-items:center;background:rgba(0,0,0,.45);padding:5px 10px;border-radius:99px;white-space:nowrap;font-size:clamp(10px,3vw,12px)}
+.daily .hudtop #countdown{flex:none;white-space:nowrap}
 .daily .hudtop .r i{width:8px;height:8px;border-radius:50%;background:#FF4B2B;animation:blink 1s steps(2) infinite}
 .daily .body{position:relative;padding:22px;display:flex;flex-direction:column;gap:10px}
 .daily .tag{font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--xp)}
@@ -464,9 +465,11 @@ body{-webkit-tap-highlight-color:transparent}
   @media (max-width: 340px){.hero-stats div:last-child b{font-size:clamp(13px,4.7vw,16px)}}
   @media (max-width: 300px){.hero-stats{column-gap:4px}.hero-stats div+div{padding-left:4px}.hero-stats div:last-child b{font-size:clamp(13px,4.7vw,15px)}}
   .daily{min-height:260px;border-radius:22px}
+  .daily .hudtop .r{letter-spacing:-.04em}
   .daily h2{font-size:21px}
   .daily .money{font-size:28px}
   .daily .body{padding:18px}
+  @media (max-width:300px){.daily .hudtop{left:12px;right:12px}.daily .hudtop .r{gap:5px;padding:4px 6px}.daily .hudtop #countdown{font-size:10px}}
   .daily .foot .btn{flex:1;min-height:48px}
   /* filtros em linha com rolagem lateral */
   .sort select{font-size:16px}
