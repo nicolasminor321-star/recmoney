@@ -488,14 +488,20 @@ body{-webkit-tap-highlight-color:transparent}
   .m-logo .logo-mark{width:30px;height:30px}
   .mcard.lock .mtop{background:radial-gradient(circle at 20% 0%,rgba(255,62,165,.5),transparent 60%),radial-gradient(circle at 60% 110%,rgba(46,139,255,.6),transparent 60%),var(--pro-deep)}
 
-  .m-cat{display:flex;align-items:center;gap:6px;min-width:0;flex-wrap:wrap}
+  .m-pay{display:flex!important;flex-direction:column;align-items:stretch;gap:4px}
+  .m-pay-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;min-width:0}
+  .m-cat{display:flex;align-items:flex-start;gap:6px;min-width:0;flex:1;flex-wrap:wrap}
+  .m-cat .cat{font-size:clamp(9px,3.5vw,11px);letter-spacing:.04em;white-space:nowrap}
+  .m-pay-top>b{flex:none;white-space:nowrap;font-size:clamp(12px,4.5vw,20px)!important}
+  .m-pay>.tagx{display:inline-flex;margin:4px 0;max-width:100%;align-self:flex-start}
   .tagx{display:inline-flex;align-items:center;gap:3px;font-size:10.5px;font-weight:800;padding:2px 7px 2px 5px;border-radius:99px;background:color-mix(in srgb,var(--rec) 14%,transparent);color:var(--rec);white-space:nowrap;text-transform:none;letter-spacing:0}
   .tagx svg{width:11px;height:11px}
   .tagx.xp{background:var(--xp);color:var(--xp-ink)}
   .mbody{padding:14px;gap:8px;min-width:0}
-  .mbody h3{font-size:15px}
-  .mbody .cat{font-size:11px}
-  .m-pay{display:flex!important;justify-content:space-between;align-items:center;gap:8px}
+  .mbody h3{font-size:15px;overflow-wrap:anywhere;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden}
+  .tagx[hidden]{display:none}
+  .mbody .cat{font-size:clamp(9px,3.5vw,11px);letter-spacing:.04em;white-space:nowrap}
+  .m-pay{display:flex!important;flex-direction:column;align-items:stretch;gap:4px}
   .m-pay b{font-family:var(--display);font-size:20px;font-weight:800;color:var(--cash);letter-spacing:-.02em}
   .meta .chip{padding:4px 8px;font-size:11px}
   .how{grid-template-columns:1fr 1fr;gap:10px}
@@ -807,7 +813,7 @@ body.locked .nudge{display:none}
   .mtop{width:64px!important}
   .mtop .ico{width:32px!important;height:32px!important}
   .mbody{padding:12px!important}
-  .m-pay b{font-size:18px!important}
+  .m-pay-top>b{font-size:clamp(12px,4.5vw,20px)!important}
   .vagas .t{font-size:11.5px;gap:6px}
   .vagas .t span{white-space:nowrap}
 }
@@ -1032,7 +1038,9 @@ body.locked .nudge{display:none}
           <div class="hudtop"><span class="r"><i></i>REC · MISSÃO DO DIA</span><span id="countdown">07:42:10</span></div>
           <div class="body">
             <span class="tag">XP em dobro hoje</span>
+            <span class="tagx sp" id="d-premium" hidden><svg><use href="#i-bolt"/></svg>Premium</span>
             <h2 id="d-title">Picar legumes para uma refeição</h2>
+
             <div class="foot">
               <span class="money num" id="d-pay">R$ 26,40</span>
               <button class="btn brand rec" id="d-go"><svg><use href="#i-cam"/></svg>Gravar agora</button>
@@ -1092,6 +1100,7 @@ body.locked .nudge{display:none}
       <div class="vh">
         <div>
           <span class="chip" id="g-cat" style="margin-bottom:10px">Cozinha</span>
+          <span class="tagx sp" id="g-premium" hidden style="margin:4px 0;max-width:100%"><svg><use href="#i-bolt"/></svg>Premium</span>
           <h1 id="g-title">Lavar a louça do jantar</h1>
           <p id="g-desc"></p>
         </div>
@@ -1425,9 +1434,9 @@ function missions(){
   if(!total){ $('#mgrid').innerHTML=`<p class="muted" style="grid-column:1/-1;margin:0">Você já gravou todas as missões desta categoria. Novas missões chegam todo dia.</p>`; }
   else $('#mgrid').innerHTML=list.slice(0,SHOW).map(m=>`
     <button class="mcard ${locked(m)?'lock':''} ${m.special?'special':''} ${m.premium?'prem':''}" data-m="${m.id}" style="${catVars(m.cat)}" aria-label="${m.t}, ${BRL(payFor(m))}${locked(m)?', missão Premium':''}">
-      <div class="mtop ${photoOf(m.id)?'ph':''}" ${photoOf(m.id)?`style="background-image:url(${photoOf(m.id)})"`:''}><svg class="ico"><use href="${catIcon(m.cat)}"/></svg><span class="pay num">${BRL(payFor(m))}</span>${m.special?`<span class="hot sp"><svg><use href="#i-bolt"/></svg>ESPECIAL</span>`:''}${locked(m)&&!m.special?'<span class="hot"><svg><use href="#i-lock"/></svg>PREMIUM</span>':m.special?'':(m.id===DAILY?'<span class="hot">XP EM DOBRO</span>':(m.slots<10?'<span class="hot">ÚLTIMAS VAGAS</span>':''))}</div>
+      <div class="mtop ${photoOf(m.id)?'ph':''}" ${photoOf(m.id)?`style="background-image:url(${photoOf(m.id)})"`:''}><svg class="ico"><use href="${catIcon(m.cat)}"/></svg><span class="pay num">${BRL(payFor(m))}</span>${locked(m)&&!m.special?'<span class="hot"><svg><use href="#i-lock"/></svg>PREMIUM</span>':!m.special&&m.id===DAILY?'<span class="hot">XP EM DOBRO</span>':(!m.special&&m.slots<10?'<span class="hot">ÚLTIMAS VAGAS</span>':'')}</div>
       <div class="mbody">
-        <div class="m-pay" style="display:none"><span class="m-cat"><span class="cat">${m.cat}</span>${m.special?'<span class="tagx sp"><svg><use href="#i-bolt"/></svg>Especial Premium</span>':''}${locked(m)&&!m.special?'<span class="tagx pro"><svg><use href="#i-lock"/></svg>Premium</span>':m.special?'':(m.id===DAILY?'<span class="tagx xp"><svg><use href="#i-star"/></svg>XP 2x</span>':(m.slots<10?'<span class="tagx"><svg><use href="#i-flame"/></svg>Acabando</span>':''))}</span><b class="num">${BRL(payFor(m))}</b></div>
+        <div class="m-pay" style="display:none"><div class="m-pay-top"><span class="m-cat"><span class="cat">${m.cat}</span></span><b class="num">${BRL(payFor(m))}</b></div>${m.special?'<span class="tagx sp"><svg><use href="#i-bolt"/></svg>Premium</span>':''}${locked(m)&&!m.special?'<span class="tagx pro"><svg><use href="#i-lock"/></svg>Premium</span>':m.special?'':(m.id===DAILY?'<span class="tagx xp"><svg><use href="#i-star"/></svg>XP 2x</span>':(m.slots<10?'<span class="tagx"><svg><use href="#i-flame"/></svg>Acabando</span>':''))}</div>
         <div><div class="cat d-only">${m.cat}</div><h3>${m.t}</h3></div>
         <div class="meta"><span class="chip mono">${fmtMin(m.min)}</span><span class="chip xp">+${xpFor(m)} XP</span><span class="chip" title="Dificuldade"><span class="diff">${[1,2,3].map(i=>`<i class="${i<=m.d?'f':''}"></i>`).join('')}</span></span></div>
         ${m.special?`<div class="spslots"><svg><use href="#i-flame"/></svg>Só ${m.slots} ${m.slots===1?'vaga':'vagas'} de ${m.max}<span>${m.slots<=3?'quase esgotada':'vagas limitadas'}</span></div>`:''}
@@ -1439,7 +1448,7 @@ function missions(){
   { const box=$('#d-photo').closest('.daily'), im=$('#d-photo'), ph=photoOf(d.id); im.alt=d.t;
     if(ph){ im.onload=()=>box.classList.add('has-photo'); im.onerror=()=>box.classList.remove('has-photo'); if(im.getAttribute('src')!==ph) im.src=ph; else if(im.complete&&im.naturalWidth) box.classList.add('has-photo'); }
     else { box.classList.remove('has-photo'); im.removeAttribute('src'); } }
-  $('#d-title').textContent=d.t; $('#d-go').dataset.m=d.id; $('#d-pay').textContent=BRL(payFor(d));
+  $('#d-title').textContent=d.t; $('#d-go').dataset.m=d.id; $('#d-pay').textContent=BRL(payFor(d)); $('#d-premium').hidden=!d.special;
 }
 $('#filters').addEventListener('click',e=>{const b=e.target.closest('[data-f]');if(!b)return;S.filter=b.dataset.f;SHOW=12;missions();});
 $('#msort').addEventListener('change',e=>{SORT=e.target.value;SHOW=12;missions();});
@@ -1474,7 +1483,7 @@ function start(id){
     const ph=photoOf(m.id); if(ph) im.src=ph; else im.removeAttribute('src'); }
   S.cur=id; S.recSecs=0; S.recording=false; S.file=null; clearInterval(timer); VFILE=null; QA=null; QA_RUN++; $('#qa').hidden=true;
   const gc=$('#g-cat'); gc.textContent=m.cat; gc.style.cssText=catVars(m.cat)+';background:var(--tint);color:var(--col);margin-bottom:10px';
-  $('#g-title').textContent=m.t; $('#g-desc').textContent=m.desc;
+  $('#g-title').textContent=m.t; $('#g-desc').textContent=m.desc; $('#g-premium').hidden=!m.special;
   $('#g-pay').textContent=BRL(payFor(m)); $('#g-xp').textContent=`+${xpFor(m)} XP`;
   $('#vf-min').textContent=`mín. ${fmtMin(m.min)}`;
   $('#tips').innerHTML=TIPS.map(t=>`<li><span class="ti"><svg><use href="#${t[0]}"/></svg></span><span><b>${t[1]}</b><small>${t[2]}</small></span></li>`).join('');
