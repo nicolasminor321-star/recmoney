@@ -130,6 +130,8 @@ main{min-width:0;display:flex;flex-direction:column}
 .pill.cash.on .chev{display:none}
 .pill.fire{color:var(--brand)}
 .icon-btn{width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;flex:none}
+.icon-btn#b-theme{width:38px;height:38px;flex:none;border-radius:50%;padding:0;display:grid;place-items:center}
+.icon-btn#b-theme svg{width:18px;height:18px}
 .icon-btn svg{width:20px;height:20px}
 .icon-btn:hover{border-color:var(--ink)}
 
@@ -442,6 +444,7 @@ body{-webkit-tap-highlight-color:transparent}
   .pill.hide-s{display:none}
   .top{gap:8px}
   .icon-btn{width:40px;height:40px}
+  .icon-btn#b-theme{width:34px;height:34px}
   .m-xp{display:flex;align-items:center;gap:8px;position:absolute;left:0;right:0;bottom:-1px;height:3px;background:var(--soft)}
   .m-xp i{display:block;height:100%;background:linear-gradient(90deg,#FFD84D,#FFAA00);transition:width .9s}
   .m-lvl{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;font-family:var(--display);font-weight:800;font-size:15px;color:#1A1400;background:linear-gradient(140deg,#FFD84D,#FFAA00);flex:none;border:0;padding:0}
@@ -797,7 +800,7 @@ body.locked .nudge{display:none}
 @media (max-width:420px){
   .top{gap:8px!important;padding-left:12px!important;padding-right:12px!important}
   .pill.cash .chev{display:none}
-  .icon-btn#b-theme{width:36px;height:36px;flex:none}
+  .icon-btn#b-theme{width:34px;height:34px;flex:none}
   .m-logo b{font-size:18px}
   .m-logo{flex:none;white-space:nowrap}
 }
@@ -854,14 +857,14 @@ body.locked .nudge{display:none}
     .mtools .sortrow{display:grid;grid-template-columns:minmax(0,1fr);gap:6px}
     .mtools .sort{width:100%;min-width:0;justify-content:space-between}
     .mtools .sort select{width:auto;max-width:calc(100% - 64px)}
-    .top{gap:4px!important;padding-inline:8px!important;flex-wrap:nowrap}
+    .top{gap:4px!important;padding:10px 12px 10px 8px!important;flex-wrap:nowrap}
     .m-logo{display:flex;flex:none;min-width:max-content;gap:4px;padding:0;white-space:nowrap}
     .m-logo b{display:block;flex:none;white-space:nowrap;font-size:clamp(15px,4.6vw,20px);letter-spacing:-.03em}
     .m-logo .logo-mark{width:24px;height:24px;flex:none;border-radius:8px}
     .m-lvl{width:24px!important;height:24px!important;flex:none;font-size:12px}
     .pill.cash{flex:none;gap:3px;padding:4px 5px!important;font-size:clamp(10px,3.7vw,12px)}
     .pill.cash svg{width:13px;height:13px;flex:none}
-    .icon-btn#b-theme{width:26px;height:26px;flex:none}
+    .icon-btn#b-theme{width:34px;height:34px;flex:none}
     .view{padding-inline:12px}
     .pro-banner{padding:16px 12px}
     .pb-stats div{padding-inline:3px}
@@ -1014,7 +1017,7 @@ body.locked .nudge{display:none}
       <button class="m-lvl m-only" id="m-lvl" aria-label="Seu nível" style="display:none">3</button>
       <span class="pro-chip"><svg><use href="#i-crown"/></svg>Premium</span>
       <div class="pill fire hide-s" title="Dias seguidos gravando"><svg><use href="#i-flame"/></svg><span class="num" id="h-streak">4</span></div>
-      <a class="pill cash" href="#carteira" data-v="carteira" aria-label="Ver carteira" title="Abrir carteira"><svg><use href="#i-coin"/></svg><span class="num" id="h-saldo">R$ 47,50</span><svg class="chev"><use href="#i-arr-r"/></svg></a>
+      <a class="pill cash" href="#carteira" data-v="carteira" aria-label="Ver carteira" title="Abrir carteira"><span class="num" id="h-saldo">R$ 47,50</span></a>
       <button class="icon-btn" id="b-theme" aria-label="Alternar modo noturno"><svg><use href="#i-moon"/></svg></button>
     </header>
 
