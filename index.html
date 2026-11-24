@@ -635,7 +635,7 @@ body.sheet{overflow:hidden}
 .a-trust svg{width:16px;height:16px;color:var(--cash)}
 .a-phone{position:relative;aspect-ratio:9/15;max-width:300px;width:100%;justify-self:center;border-radius:36px;padding:10px;background:var(--ink);box-shadow:0 30px 60px -24px rgba(14,15,19,.45);transform:rotate(3deg)}
 .a-shot{width:100%;height:100%;border-radius:28px;overflow:hidden;position:relative;background:#2a2622}
-.a-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:55% 60%;transform-origin:56% 62%;animation:aKen 14s ease-in-out infinite alternate}
+.a-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 55%;transform-origin:62% 55%;animation:aKen 14s ease-in-out infinite alternate}
 .a-shot::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.28),transparent 26%,transparent 62%,rgba(0,0,0,.35))}
 @keyframes aKen{0%{transform:scale(1.04) translate(0,0)}50%{transform:scale(1.14) translate(-2%,1.5%)}100%{transform:scale(1.08) translate(2%,-1%)}}
 @media (prefers-reduced-motion:reduce){.a-shot img{animation:none}}
@@ -903,6 +903,9 @@ body.locked .nudge{display:none}
   .a-top .icon-btn{width:32px;height:32px}
   .a-top .btn.ghost{padding:7px 10px}
 }
+.a-earn b.num{display:flex;align-items:center;gap:6px;white-space:nowrap}
+.a-earn .a-sp{font-size:10px;padding:2px 7px;margin:0}
+.a-earn .a-sp svg{width:10px;height:10px}
 </style>
 </head>
 <body>
@@ -966,9 +969,9 @@ body.locked .nudge{display:none}
         </div>
       </div>
       <div class="a-phone" aria-hidden="true">
-        <div class="a-shot"><img src="img/missoes/legumes.jpg" alt="" width="1024" height="576" decoding="async"></div>
-        <span class="a-rec"><i></i>REC 02:41</span>
-        <div class="a-earn"><span class="ok"><svg><use href="#i-check"/></svg></span><div><b class="num">+ R$ 5,43</b><span>Picar legumes · aprovado</span></div></div>
+        <div class="a-shot"><img src="img/missoes/sp-semana.jpg" alt="" width="1024" height="576" decoding="async"></div>
+        <span class="a-rec"><i></i>REC <span id="a-rec-t">02:41</span></span>
+        <div class="a-earn"><span class="ok"><svg><use href="#i-check"/></svg></span><div><b class="num">+ R$ 61,18 <span class="tagx sp a-sp"><svg><use href="#i-bolt"/></svg>Premium</span></b><span>Refeições da semana · aprovado</span></div></div>
       </div>
     </section>
 
@@ -1956,6 +1959,10 @@ function logout(){
   closeModal(); authTab('login'); showAuth(true);
 }
 qa('[data-logout]').forEach(b=>b.addEventListener('click',logout));
+
+(()=>{const el=document.getElementById('a-rec-t');if(!el)return;let t=161;
+const f=()=>{const m=Math.floor(t/60),s=t%60;el.textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0')};
+setInterval(()=>{t++;f()},1000);})();
 
 /* ===== Premium: checkout e ativação por link assinado ===== */
 const CHECKOUT_URL=''; // cole aqui o link do seu checkout, ex.: 'https://pay.suaplataforma.com/xxxx'
