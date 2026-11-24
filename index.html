@@ -634,7 +634,11 @@ body.sheet{overflow:hidden}
 .a-trust span{display:inline-flex;align-items:center;gap:6px}
 .a-trust svg{width:16px;height:16px;color:var(--cash)}
 .a-phone{position:relative;aspect-ratio:9/15;max-width:300px;width:100%;justify-self:center;border-radius:36px;padding:10px;background:var(--ink);box-shadow:0 30px 60px -24px rgba(14,15,19,.45);transform:rotate(3deg)}
-.a-phone canvas{width:100%;height:100%;object-fit:cover;border-radius:28px;display:block}
+.a-shot{width:100%;height:100%;border-radius:28px;overflow:hidden;position:relative;background:#2a2622}
+.a-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:55% 60%;transform-origin:56% 62%;animation:aKen 14s ease-in-out infinite alternate}
+.a-shot::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.28),transparent 26%,transparent 62%,rgba(0,0,0,.35))}
+@keyframes aKen{0%{transform:scale(1.04) translate(0,0)}50%{transform:scale(1.14) translate(-2%,1.5%)}100%{transform:scale(1.08) translate(2%,-1%)}}
+@media (prefers-reduced-motion:reduce){.a-shot img{animation:none}}
 .a-rec{position:absolute;top:24px;left:24px;display:inline-flex;align-items:center;gap:6px;background:rgba(0,0,0,.55);color:#fff;font:700 12px var(--mono);padding:6px 10px;border-radius:999px}
 .a-rec i{width:8px;height:8px;border-radius:50%;background:#FF3B30;animation:blink 1.2s steps(2) infinite}
 .a-earn{position:absolute;left:-28px;bottom:56px;transform:rotate(-3deg);background:var(--surface);color:var(--ink);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:16px;padding:10px 14px;display:flex;align-items:center;gap:10px}
@@ -707,7 +711,7 @@ body.sheet{overflow:hidden}
   .a-card .a-box{max-width:none;border-radius:26px 26px 0 0;max-height:92dvh;padding-bottom:max(22px,env(safe-area-inset-bottom));transform:translateY(100%)}
   .a-hero{padding-top:8px;grid-template-columns:1fr;gap:22px}
   .a-phone{display:block;aspect-ratio:16/9;max-width:none;border-radius:26px;padding:6px;transform:none}
-  .a-phone canvas{border-radius:21px}
+  .a-shot{border-radius:21px}
   .a-rec{top:18px;left:18px}
   .a-earn{left:auto;right:14px;bottom:14px;transform:none;padding:8px 12px}
   .a-earn b{font-size:15px}
@@ -842,7 +846,11 @@ body.locked .nudge{display:none}
   @media (max-width:820px){
     .a-hero{grid-template-columns:minmax(0,1fr)}
     .a-phone{max-width:100%}
-    .a-earn{left:0}
+    .a-earn{left:auto;right:12px;top:12px;bottom:auto;max-width:calc(100% - 24px);padding:7px 11px;gap:8px;border-radius:13px}
+    .a-earn .ok{width:28px;height:28px}
+    .a-earn b{font-size:15px}
+    .a-earn span{font-size:11px}
+    .a-rec{top:auto;bottom:16px;left:16px}
     .vh .filters,#filters{width:100%;max-width:100%;min-width:0;margin:0;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}
     .filters button{flex:none}
     .sortrow,.sort{min-width:0;max-width:100%}
@@ -958,7 +966,7 @@ body.locked .nudge{display:none}
         </div>
       </div>
       <div class="a-phone" aria-hidden="true">
-        <canvas id="a-scene" width="540" height="900"></canvas>
+        <div class="a-shot"><img src="img/missoes/legumes.jpg" alt="" width="1024" height="576" decoding="async"></div>
         <span class="a-rec"><i></i>REC 02:41</span>
         <div class="a-earn"><span class="ok"><svg><use href="#i-check"/></svg></span><div><b class="num">+ R$ 5,43</b><span>Picar legumes · aprovado</span></div></div>
       </div>
@@ -1948,7 +1956,6 @@ function logout(){
   closeModal(); authTab('login'); showAuth(true);
 }
 qa('[data-logout]').forEach(b=>b.addEventListener('click',logout));
-scene($('#a-scene'),()=>true,'board');
 
 /* ===== Premium: checkout e ativação por link assinado ===== */
 const CHECKOUT_URL=''; // cole aqui o link do seu checkout, ex.: 'https://pay.suaplataforma.com/xxxx'
