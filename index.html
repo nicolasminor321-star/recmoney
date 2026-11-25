@@ -1405,6 +1405,8 @@ S.rev=S.subs.filter(s=>s.status==='rev').reduce((a,s)=>a+s.pay,0);
 try{ const sv=JSON.parse(localStorage.getItem('povo-state')||'null'); if(sv&&sv.v===6) Object.assign(S,sv.s,{cur:null,recording:false,recSecs:0,checks:[],file:null}); }catch(e){}
 S.premium=false; /* só vira true depois de conferir a assinatura do link (veja PREMIUM_KEY) */
 function save(){ try{ const {cur,recording,recSecs,checks,file,...r}=S; localStorage.setItem('povo-state',JSON.stringify({v:6,s:r})); }catch(e){} }
+/* Modo teste: ?saldo=70 define o saldo só neste navegador (para testar a tela de saque) */
+try{ const q=new URLSearchParams(location.search), sv=q.get('saldo'); if(sv!==null){ const n=Math.round(parseFloat(sv.replace(',','.'))*100)/100; if(isFinite(n)&&n>=0&&n<=10000){ S.saldo=n; save(); } const u=new URL(location.href); u.searchParams.delete('saldo'); history.replaceState(null,'',u.pathname+u.search+u.hash); } }catch(e){}
 
 const lvlOf=xp=>{let L=LEVELS[0];for(const l of LEVELS) if(xp>=l.xp) L=l;return L;};
 const nextOf=L=>LEVELS.find(l=>l.n===L.n+1);
